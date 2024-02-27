@@ -1,0 +1,53 @@
+.panel {
+    min-height: 100vh;
+    padding: 30px;
+    background-color: #FBFAFF;
+
+    .logo {
+        margin-bottom: 50px;
+    }
+    .menu {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+        &__list {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 25px;
+        }
+        &__item {
+            background-color: #FFFFFF;
+            box-shadow: 0px 8px 14px 0px #3E6BE01F; 
+            @include hover {
+                background-color: #6A6AFB;
+                img {
+                    filter: brightness(0) invert(1);
+                }
+            }
+
+        }
+        &__add {
+            border: 1px solid #CAD5FF;
+            background-color: #FBFAFF;
+            @include hover {
+                background-color: #eff1fc;
+            }
+        }
+        
+    }
+    .button-item {
+        @include flex-center;
+        width: 45px;
+        height: 46px;
+        cursor: pointer;
+        border-radius: 14px;
+        &--active {
+            background-color: #5051F9;
+            img {
+                filter: brightness(0) invert(1);
+            }
+        }
+    }
+}

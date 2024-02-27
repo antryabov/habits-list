@@ -8,6 +8,14 @@ body {
     background-color: #F3F6FD;
 }
 
+.app {
+    display: flex;
+}
+
+button {
+    @include reset-button
+}
+
 a,
 button,
 input,

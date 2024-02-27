@@ -212,6 +212,16 @@ body {
   background-color: #F3F6FD;
 }
 
+.app {
+  display: flex;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
 a,
 button,
 input,
@@ -225,4 +235,74 @@ a {
 }
 a, a:hover {
   text-decoration: none;
+}
+
+.panel {
+  min-height: 100vh;
+  padding: 30px;
+  background-color: #FBFAFF;
+}
+.panel .logo {
+  margin-bottom: 50px;
+}
+.panel .menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+}
+.panel .menu__list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+}
+.panel .menu__item {
+  background-color: #FFFFFF;
+  box-shadow: 0px 8px 14px 0px rgba(62, 107, 224, 0.1215686275);
+}
+@media (hover: hover) {
+  .panel .menu__item:hover {
+    background-color: #6A6AFB;
+  }
+  .panel .menu__item:hover img {
+    filter: brightness(0) invert(1);
+  }
+}
+@media (hover: none) {
+  .panel .menu__item:active {
+    background-color: #6A6AFB;
+  }
+  .panel .menu__item:active img {
+    filter: brightness(0) invert(1);
+  }
+}
+.panel .menu__add {
+  border: 1px solid #CAD5FF;
+  background-color: #FBFAFF;
+}
+@media (hover: hover) {
+  .panel .menu__add:hover {
+    background-color: #eff1fc;
+  }
+}
+@media (hover: none) {
+  .panel .menu__add:active {
+    background-color: #eff1fc;
+  }
+}
+.panel .button-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 46px;
+  cursor: pointer;
+  border-radius: 14px;
+}
+.panel .button-item--active {
+  background-color: #5051F9;
+}
+.panel .button-item--active img {
+  filter: brightness(0) invert(1);
 }
