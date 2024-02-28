@@ -1,0 +1,130 @@
+.content {
+    min-width: 900px;
+    padding: 45px;
+    background-color: #F3F6FD;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__title {
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 33.45px;
+        }
+        .progress {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            &__text {
+                min-width: 235px;
+                display: flex;
+                justify-content: space-between;
+                gap: 127px;
+            }
+            &__name {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 15.61px;
+                color: #232360;
+            }
+            &__percent {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 13.38px;
+                color: #768396;
+            }
+            &__bar {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                height: 5px;
+                border-radius: 4px;
+                background-color: #E6E9ED;
+                &-cover {
+                    position: absolute;
+                    z-index: 10;
+                    width: 80%;
+                    height: 5px;
+                    border-radius: 4px;
+                    background-color: #5051F9;
+                }
+            }
+        }
+    }
+    .main {
+        margin-top: 30px;
+        .habbit {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: center;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+            &__day {
+                min-width: 150px;
+                padding: 20px 40px;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 15.61px;
+                border-right: 1px solid #E7EBFB;
+                border-radius: 10px 0 0 10px;
+                background-color: #FBFAFF;
+            }
+            &__comment {
+                padding: 20px 25px;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 17.84px;
+                border-radius: 5px;
+                color: #23235F;
+            }
+            &__delete {
+                padding: 2px;
+                margin-left: auto;
+                margin-right: 10px;
+                cursor: pointer;
+                @include hover {
+                    background-color: #eff1fc;
+                }
+            }
+            &__form {
+                position: relative;
+                display: flex;
+                padding: 0 15px 0 25px;
+                gap: 20px;
+                width: 100%;
+            }
+            .input {
+                flex: 1;
+                padding: 12px 20px 12px 45px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 15.61px;
+                background-color: #FFFFFF;
+                border: 1px solid #E7EBFB;
+                border-radius: 9px;
+                &::placeholder {
+                    color: #8899A8;
+                }
+            }
+            &__image-comment {
+                position: absolute;
+                top: 30%;
+                left: 45px;
+            }
+            &__button-add {
+                padding: 14px 30px;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 14.5px;
+                color: #5051F9;
+                background-color: #EDECFE;
+                border-radius: 9px;
+                cursor: pointer;
+                @include hover {
+                    background-color: #dad8ff;
+                }
+            }
+        }
+    }
+}
+

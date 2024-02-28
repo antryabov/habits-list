@@ -240,7 +240,7 @@ a, a:hover {
 .panel {
   min-height: 100vh;
   padding: 30px;
-  background-color: #FBFAFF;
+  background-color: #f6f3ff;
 }
 .panel .logo {
   margin-bottom: 50px;
@@ -305,4 +305,151 @@ a, a:hover {
 }
 .panel .button-item--active img {
   filter: brightness(0) invert(1);
+}
+
+.content {
+  min-width: 900px;
+  padding: 45px;
+  background-color: #F3F6FD;
+}
+.content .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .header__title {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 33.45px;
+}
+.content .header .progress {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.content .header .progress__text {
+  min-width: 235px;
+  display: flex;
+  justify-content: space-between;
+  gap: 127px;
+}
+.content .header .progress__name {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15.61px;
+  color: #232360;
+}
+.content .header .progress__percent {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13.38px;
+  color: #768396;
+}
+.content .header .progress__bar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  background-color: #E6E9ED;
+}
+.content .header .progress__bar-cover {
+  position: absolute;
+  z-index: 10;
+  width: 80%;
+  height: 5px;
+  border-radius: 4px;
+  background-color: #5051F9;
+}
+.content .main {
+  margin-top: 30px;
+}
+.content .main .habbit {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+}
+.content .main .habbit__day {
+  min-width: 150px;
+  padding: 20px 40px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 15.61px;
+  border-right: 1px solid #E7EBFB;
+  border-radius: 10px 0 0 10px;
+  background-color: #FBFAFF;
+}
+.content .main .habbit__comment {
+  padding: 20px 25px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17.84px;
+  border-radius: 5px;
+  color: #23235F;
+}
+.content .main .habbit__delete {
+  padding: 2px;
+  margin-left: auto;
+  margin-right: 10px;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .content .main .habbit__delete:hover {
+    background-color: #eff1fc;
+  }
+}
+@media (hover: none) {
+  .content .main .habbit__delete:active {
+    background-color: #eff1fc;
+  }
+}
+.content .main .habbit__form {
+  position: relative;
+  display: flex;
+  padding: 0 15px 0 25px;
+  gap: 20px;
+  width: 100%;
+}
+.content .main .habbit .input {
+  flex: 1;
+  padding: 12px 20px 12px 45px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15.61px;
+  background-color: #FFFFFF;
+  border: 1px solid #E7EBFB;
+  border-radius: 9px;
+}
+.content .main .habbit .input::-moz-placeholder {
+  color: #8899A8;
+}
+.content .main .habbit .input::placeholder {
+  color: #8899A8;
+}
+.content .main .habbit__image-comment {
+  position: absolute;
+  top: 30%;
+  left: 45px;
+}
+.content .main .habbit__button-add {
+  padding: 14px 30px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 14.5px;
+  color: #5051F9;
+  background-color: #EDECFE;
+  border-radius: 9px;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .content .main .habbit__button-add:hover {
+    background-color: #dad8ff;
+  }
+}
+@media (hover: none) {
+  .content .main .habbit__button-add:active {
+    background-color: #dad8ff;
+  }
 }
