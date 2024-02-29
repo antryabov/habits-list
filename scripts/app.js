@@ -24,7 +24,6 @@ function saveData() {
 }
 
 // render
-
 function rerenderMenu(activeHabbit) {
   if (!activeHabbit) {
     return;
