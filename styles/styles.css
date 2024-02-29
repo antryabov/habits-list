@@ -356,10 +356,11 @@ a, a:hover {
 .content .header .progress__bar-cover {
   position: absolute;
   z-index: 10;
-  width: 80%;
+  /* width: 80%; */
   height: 5px;
   border-radius: 4px;
   background-color: #5051F9;
+  transition: all 0.5s;
 }
 .content .main {
   margin-top: 30px;
@@ -430,7 +431,7 @@ a, a:hover {
 }
 .content .main .habbit__image-comment {
   position: absolute;
-  top: 30%;
+  top: 25%;
   left: 45px;
 }
 .content .main .habbit__button-add {
