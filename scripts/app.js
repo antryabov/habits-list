@@ -2,6 +2,7 @@
 
 let habbits = [];
 const HABBIT_KEY = "HABBIT_KEY";
+let globalActiveHabbitId;
 
 // page
 const page = {
@@ -11,7 +12,10 @@ const page = {
     progressPercent: document.querySelector(".progress__percent"),
     progressCoverBar: document.querySelector(".progress__bar-cover"),
   },
-  content: document.querySelector(".main-inner"),
+  content: {
+    daysContainer: document.querySelector(".main-inner"),
+    nextDay: document.querySelector(".habbit__day"),
+  },
 };
 
 // utils
@@ -67,43 +71,59 @@ function rerenderHeader(activeHabbit) {
 }
 
 function rerenderDays(activeHabbit) {
-  for (let [day, comment] of activeHabbit.days.entries()) {
-    const existed = document.querySelector(`[comment-id="${day}"]`);
-    if (!existed) {
-      const habbit = document.createElement("div");
-      habbit.setAttribute("comment-id", day);
-      habbit.classList.add("habbit");
-      habbit.innerHTML = ` <div class="habbit__day">День ${day + 1}</div>
-      <div class="habbit__comment">${comment.comment}</div>
+  page.content.daysContainer.innerHTML = "";
+  for (let index in activeHabbit.days) {
+    const habbit = document.createElement("div");
+    habbit.setAttribute("comment-id", index);
+    habbit.classList.add("habbit");
+    habbit.innerHTML = ` <div class="habbit__day">День ${
+      Number(index) + 1
+    }</div>
+      <div class="habbit__comment">${activeHabbit.days[index].comment}</div>
       <button class="habbit__delete">
-          <img src="./assets/icons/delete.svg" alt="Удалить день 1" class="habbit__delete-habbit">
+          <img src="./assets/icons/delete.svg" alt="Удалить день ${
+            index + 1
+          }" class="habbit__delete-habbit">
       </button>`;
-      page.content.append(habbit);
-    }
+    page.content.daysContainer.append(habbit);
   }
+  page.content.nextDay.innerHTML = `День ${activeHabbit.days.length + 1}`;
+}
 
-  const commentExisted = document.querySelector(".habbit-add");
-  if (commentExisted) {
+// work with days
+function addDays(event) {
+  const form = event.target;
+  event.preventDefault();
+
+  const data = new FormData(form); // получает данные формы
+  const comment = data.get("comment");
+  form["comment"].classList.remove("input--error");
+  if (!comment) {
+    form["comment"].classList.add("input--error"); // по атрибуту name
     return;
   }
-  const addComment = document.createElement("div");
-  addComment.classList.add("habbit", "habbit-add");
-  addComment.innerHTML = `
-      <div class="habbit__day">День ${activeHabbit.days.length + 1}</div>
-      <form class="habbit__form">
-          <input class="habbit__input-icon input" type="text" placeholder="Комментарий">
-          <img class="habbit__image-comment" src="./assets/icons/comment.svg" alt="Иконка комментария">
-          <button class="habbit__button-add">Готово</button>
-      </form>
-  `;
-  page.content.append(addComment);
+  habbits = habbits.map((habbit) => {
+    if (habbit.id === globalActiveHabbitId) {
+      return {
+        ...habbit,
+        days: habbit.days.concat([{ comment }]),
+      };
+    }
+    return habbit;
+  });
+
+  form["comment"].value = "";
+  rerender(globalActiveHabbitId);
+  saveData();
 }
 
 function rerender(activeHabbitId) {
-  if (!activeHabbitId) {
+  globalActiveHabbitId = activeHabbitId;
+
+  const activeHabbit = habbits.find((habbit) => habbit.id === activeHabbitId);
+  if (!activeHabbit) {
     return;
   }
-  const activeHabbit = habbits.find((habbit) => habbit.id === activeHabbitId);
   rerenderHeader(activeHabbit);
   rerenderDays(activeHabbit);
   rerenderMenu(activeHabbit);
