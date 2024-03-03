@@ -74,15 +74,18 @@ function rerenderDays(activeHabbit) {
   page.content.daysContainer.innerHTML = "";
   for (let index in activeHabbit.days) {
     const habbit = document.createElement("div");
-    habbit.setAttribute("comment-id", index);
     habbit.classList.add("habbit");
     habbit.innerHTML = ` <div class="habbit__day">День ${
       Number(index) + 1
     }</div>
-      <div class="habbit__comment">${activeHabbit.days[index].comment}</div>
-      <button class="habbit__delete">
+      <div class="habbit__comment" comment-id="${index}">${
+      activeHabbit.days[index].comment
+    }</div>
+      <button class="habbit__delete" onclick="deleteDays(${Number(
+        activeHabbit.id - 1
+      )}, ${Number(index)})">
           <img src="./assets/icons/delete.svg" alt="Удалить день ${
-            index + 1
+            Number(index) + 1
           }" class="habbit__delete-habbit">
       </button>`;
     page.content.daysContainer.append(habbit);
@@ -129,8 +132,23 @@ function rerender(activeHabbitId) {
   rerenderMenu(activeHabbit);
 }
 
+function deleteDays(activeHabbitId, commentId) {
+  for (let i = 0; i < habbits[activeHabbitId].days.length; i++) {
+    if (
+      habbits[activeHabbitId].days[i].comment ===
+      document.querySelector(`[comment-id="${commentId}"].innerHTML`)
+    ) {
+      continue;
+    }
+  }
+
+  console.log(document.querySelector(`[comment-id="${commentId}"]`).innerHTML);
+}
+
 // init
 (() => {
   loadData();
   rerender(habbits[0].id);
 })();
+
+// нужно подцепиться к активной привычке
