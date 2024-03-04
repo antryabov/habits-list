@@ -136,13 +136,24 @@ function deleteDays(activeHabbitId, commentId) {
   for (let i = 0; i < habbits[activeHabbitId].days.length; i++) {
     if (
       habbits[activeHabbitId].days[i].comment ===
-      document.querySelector(`[comment-id="${commentId}"].innerHTML`)
+      document.querySelector(`[comment-id="${commentId}"]`).innerHTML
     ) {
-      continue;
+      habbits[activeHabbitId].days.splice(i, 1);
     }
   }
-
-  console.log(document.querySelector(`[comment-id="${commentId}"]`).innerHTML);
+  // можно написать через map
+  // habbits = habbits.map((habbit) => {
+  //   if (habbit.id === globalActiveHabbitId) {
+  //     habbit.days.splice(commentId, 1);
+  //     return {
+  //       ...habbit,
+  //       days: habbit.days,
+  //     };
+  //   }
+  //   return habbit;
+  // });
+  rerender(globalActiveHabbitId);
+  saveData();
 }
 
 // init
@@ -150,5 +161,3 @@ function deleteDays(activeHabbitId, commentId) {
   loadData();
   rerender(habbits[0].id);
 })();
-
-// нужно подцепиться к активной привычке
