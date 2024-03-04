@@ -14,7 +14,7 @@
             <img class="logo" src="./assets/icons/logo.svg" alt="Логотип Habits App">
             <nav class="menu">
                 <div class="menu__list"></div>
-                <button class="menu__add button-item">
+                <button class="menu__add button-item" onclick="togglePopup()">
                     <img src="./assets/icons/add.svg" alt="Добавить привычку">
                 </button>
             </nav>
@@ -49,24 +49,25 @@
                 <h2 class="popup__habbit-title">Новая привычка</h2>
                 <div class="popup__icon-label">Иконка</div>
                 <div class="popup__icon-select icon-select">
-                    <button class="icon-select__sport icon-select--active">
+                    <button class="icon-select__sport icon icon-select--active" onclick="setIcon(this, 'sport')">
                         <img src="./assets/icons/sport.svg" alt="Спорт">
                     </button>
-                    <button class="icon-select__water">
+                    <button class="icon-select__water icon" onclick="setIcon(this, 'water')">
                         <img src="./assets/icons/water.svg" alt="Вода">
                     </button>
-                    <button class="icon-select__food">
+                    <button class="icon-select__food icon" onclick="setIcon(this, 'food')">
                         <img src="./assets/icons/food.svg" alt="Еда">
                     </button>
-                    <form class="popup__form">
-                        <input class="popup__form-title" type="text" name="name" placeholder="Название" >
-                        <input class="popup__form-target" type="number" name="target" placeholder="Цель">
-                        <button class="popup__sumbit" type="submit">Добавить</button>
-                    </form>
-                    <button class="popup__close">
-                        <img src="./assets/icons/close.svg" alt="Закрытие всплывающего окна" class="popup__close-image">
-                    </button>
                 </div>
+                <form class="popup__form" onsubmit="addHabbits(event)">
+                    <input class="popup__form-title input" type="text" name="name" placeholder="Название" >
+                    <input class="popup__form-title input" type="text" name="icon" hidden placeholder="Иконка" value="sport" >
+                    <input class="popup__form-target input" type="number" name="target" placeholder="Цель">
+                    <button class="popup__sumbit" type="submit">Добавить</button>
+                </form>
+                <button class="popup__close" onclick="togglePopup()">
+                    <img src="./assets/icons/close.svg" alt="Закрытие всплывающего окна" class="popup__close-image">
+                </button>
             </div>
         </div>
     </div>

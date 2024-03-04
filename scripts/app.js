@@ -16,6 +16,8 @@ const page = {
     daysContainer: document.querySelector(".main-inner"),
     nextDay: document.querySelector(".habbit__day"),
   },
+  popup: document.querySelector(".cover"),
+  inputIcon: document.querySelector('.popup__form input[name="icon"]'),
 };
 
 // utils
@@ -31,6 +33,10 @@ function loadData() {
 
 function saveData() {
   localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
+}
+
+function togglePopup() {
+  page.popup.classList.toggle("cover-hidden");
 }
 
 // render
@@ -93,12 +99,17 @@ function rerenderDays(activeHabbit) {
   page.content.nextDay.innerHTML = `День ${activeHabbit.days.length + 1}`;
 }
 
-// work with days
-function addDays(event) {
+// working with form
+function workingFormDataApi(event) {
   const form = event.target;
   event.preventDefault();
-
   const data = new FormData(form); // получает данные формы
+  return [form, data];
+}
+
+// work with days
+function addDays(event) {
+  const [form, data] = workingFormDataApi(event);
   const comment = data.get("comment");
   form["comment"].classList.remove("input--error");
   if (!comment) {
@@ -152,6 +163,45 @@ function deleteDays(activeHabbitId, commentId) {
   //   }
   //   return habbit;
   // });
+  rerender(globalActiveHabbitId);
+  saveData();
+}
+
+// working with habbits
+
+function setIcon(context, icon) {
+  page.inputIcon.value = icon;
+  const activeIcon = document.querySelector(".icon.icon-select--active");
+  activeIcon.classList.remove("icon-select--active");
+  context.classList.add("icon-select--active");
+}
+
+function addHabbits(event) {
+  const [form, data] = workingFormDataApi(event);
+
+  const countHabbits = habbits.length;
+  const name = data.get("name");
+  const icon = data.get("icon");
+  const target = data.get("target");
+  form["name"].classList.remove("input--error");
+  form["target"].classList.remove("input--error");
+  if (!name || !target) {
+    form["name"].classList.add("input--error");
+    form["target"].classList.add("input--error");
+    return;
+  }
+
+  habbits.push({
+    id: countHabbits + 1,
+    icon: icon,
+    name: name,
+    target: target,
+    days: [],
+  });
+  form["name"].value = "";
+  form["target"].value = "";
+
+  togglePopup();
   rerender(globalActiveHabbitId);
   saveData();
 }

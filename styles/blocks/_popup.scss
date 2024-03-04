@@ -6,15 +6,16 @@
     top: 0;
     @include flex-center;
     background-color: rgba(0,0,0, 0.25);
-    /* &-hidden {
+    &-hidden {
         display: none;
-    } */
+    }
     .popup {
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         max-width: 600px;
+        width: 100%;
         padding: 20px 20px 40px 20px;
         background-color: #FFFFFF;
         box-shadow: 0px 8px 14px 12px #3838380D;
@@ -26,6 +27,77 @@
             border: none;
             background-color: none;
             cursor: pointer;
+        }
+        &__habbit-title {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 27px;
+        }
+        &__icon-label {
+            margin-top: 19px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+            color: #768396;
+        }
+        &__icon-select {
+            display: flex;
+            gap: 25px;
+            margin: 10px 0 20px 0;
+            .icon-select--active {
+                background: #5051F9;
+                img {
+                    filter: brightness(0) invert(1);
+                }
+            }
+            .icon {
+                @include flex-center;
+                width: 45px;
+                height: 45px;
+                padding: 10px;
+                border: 1px solid #5051F9;
+                border-radius: 14px;
+                cursor: pointer;
+                @include hover {
+                    background-color: #6A6AFB;
+                    img {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+            }
+        }
+        &__form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            .input {
+                width: 100%;
+                padding: 10px 0 10px 20px;
+                background-color: #FFFFFF;
+                border: 1px solid #E7EBFB;
+                border-radius: 9px;
+                &::placeholder {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    color: #8899A8;
+                }
+                &--error {
+                    border: 1px solid red;
+                }
+            }
+            .popup__sumbit {
+                margin-top: 20px;
+                padding: 15px 20px;
+                color: #5051F9;
+                background-color: #EDECFE;
+                border-radius: 9px;
+                @include hover {
+                    background-color: #eff1fc;
+                }
+            }
         }
     }
 }
